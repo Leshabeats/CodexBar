@@ -1541,6 +1541,11 @@ extension UsageStore {
                 return backfilled
             }
             guard let backfilled else { return }
+            self.scheduleSupplementalUsageUpdate(
+                provider: provider,
+                result: result,
+                generation: generation,
+                accountID: account?.id)
             await self.recordPlanUtilizationHistorySample(
                 provider: provider,
                 snapshot: backfilled,
